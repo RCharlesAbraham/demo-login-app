@@ -155,7 +155,7 @@
                 <img src="{{ asset('images/icons/4.png') }}" style="width: 22px; height: 22px;">
                 Exam
             </a>
-            <a href="#" class="nav-link">
+            <a href="{{ route('quiz') }}" class="nav-link">
                 <img src="{{ asset('images/icons/5.png') }}" style="width: 22px; height: 22px;">
                 Quiz
             </a>
@@ -163,7 +163,7 @@
                 <img src="{{ asset('images/icons/6.png') }}" style="width: 22px; height: 22px;">
                 Account
             </a>
-            <a href="#" class="nav-link">
+            <a href="{{ route('wallet.address') }}" class="nav-link">
                 <img src="{{ asset('images/icons/7.png') }}" style="width: 22px; height: 22px;">
                 Wallet Address
             </a>
@@ -189,8 +189,8 @@
                             </div>
                         </div>
                         <div class="hero-left-actions">
-                            <a href="#" class="btn-outline-sm">Save</a>
-                            <a href="#" class="btn-outline-sm">Share</a>
+                            <a href="{{ route('favorites') }}" class="btn-outline-sm">Save</a>
+                            <a href="{{ route('recommendations') }}" class="btn-outline-sm">Share</a>
                         </div>
                     </div>
                     <div class="title-price-row">
@@ -252,18 +252,18 @@
                 </div>
                 <div class="f-col">
                     <ul>
-                        <li><a href="#">Teach on IL2</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Help and Support</a></li>
+                        <li><a href="{{ route('info.page', ['topic' => 'teach']) }}">Teach on IL2</a></li>
+                        <li><a href="{{ route('info.page', ['topic' => 'about']) }}">About Us</a></li>
+                        <li><a href="{{ route('info.page', ['topic' => 'contact']) }}">Contact Us</a></li>
+                        <li><a href="{{ route('info.page', ['topic' => 'support']) }}">Help and Support</a></li>
                     </ul>
                 </div>
                 <div class="f-col">
                     <ul>
-                        <li><a href="#">Terms</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Cookies Policy</a></li>
-                        <li><a href="#">Career</a></li>
+                        <li><a href="{{ route('info.page', ['topic' => 'terms']) }}">Terms</a></li>
+                        <li><a href="{{ route('info.page', ['topic' => 'privacy']) }}">Privacy Policy</a></li>
+                        <li><a href="{{ route('info.page', ['topic' => 'cookies']) }}">Cookies Policy</a></li>
+                        <li><a href="{{ route('info.page', ['topic' => 'careers']) }}">Career</a></li>
                     </ul>
                 </div>
                 <div class="f-right-col">

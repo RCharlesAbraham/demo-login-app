@@ -202,7 +202,7 @@
                 <img src="{{ asset('images/icons/4.png') }}" style="width: 22px; height: 22px;">
                 Exam
             </a>
-            <a href="#" class="nav-link">
+            <a href="{{ route('quiz') }}" class="nav-link">
                 <img src="{{ asset('images/icons/5.png') }}" style="width: 22px; height: 22px;">
                 Quiz
             </a>
@@ -210,7 +210,7 @@
                 <img src="{{ asset('images/icons/6.png') }}" style="width: 22px; height: 22px;">
                 Account
             </a>
-            <a href="#" class="nav-link">
+            <a href="{{ route('wallet.address') }}" class="nav-link">
                 <img src="{{ asset('images/icons/7.png') }}" style="width: 22px; height: 22px;">
                 Wallet Address
             </a>
@@ -237,8 +237,8 @@
                                 </div>
                             </div>
                             <div class="hero-left-actions">
-                                <a href="#" class="btn-outline-sm">Save</a>
-                                <a href="#" class="btn-outline-sm">Share</a>
+                                <a href="{{ route('favorites') }}" class="btn-outline-sm">Save</a>
+                                <a href="{{ route('recommendations') }}" class="btn-outline-sm">Share</a>
                             </div>
                         </div>
                         <div class="title-price-row">
@@ -276,7 +276,7 @@
                     <div class="modules-header-info">
                         <h2>There are 4 modules in this course</h2>
                         <p>Make the Sale: Build, Launch, and Manage E-commerce Stores is the sixth of eight courses in the Google Digital Marketing & E-commerce Certificate. This course explores how businesses and individuals sell products online, including using popular platforms like Shopify. You'll go through the process of creating a mock e-commerce store. To do this, you'll build a Shopify store, add the necessary information, and create product listings. You'll explore how to reach customers online through e-commerce customer</p>
-                        <a href="#" class="read-more-btn">Read more</a>
+                        <a href="{{ route('modules') }}" class="read-more-btn">Read more</a>
                     </div>
 
                     <div class="modules-list-outer">
@@ -305,7 +305,7 @@
                                     </div>
                                 </div>
 
-                                <a href="#" class="hide-info-btn">Hide info about module content</a>
+                                <a href="{{ route('modules') }}" class="hide-info-btn">Hide info about module content</a>
                                 <div class="incl-row" style="margin-bottom: 30px;">
                                     <div class="incl-item">13 Videos</div>
                                     <div class="incl-item" style="color: #64748b; font-weight: 500;">Total 50 minutes</div>
@@ -356,18 +356,18 @@
                 </div>
                 <div class="f-col">
                     <ul>
-                        <li><a href="#">Teach on IL2</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Help and Support</a></li>
+                        <li><a href="{{ route('info.page', ['topic' => 'teach']) }}">Teach on IL2</a></li>
+                        <li><a href="{{ route('info.page', ['topic' => 'about']) }}">About Us</a></li>
+                        <li><a href="{{ route('info.page', ['topic' => 'contact']) }}">Contact Us</a></li>
+                        <li><a href="{{ route('info.page', ['topic' => 'support']) }}">Help and Support</a></li>
                     </ul>
                 </div>
                 <div class="f-col">
                     <ul>
-                        <li><a href="#">Terms</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Cookies Policy</a></li>
-                        <li><a href="#">Career</a></li>
+                        <li><a href="{{ route('info.page', ['topic' => 'terms']) }}">Terms</a></li>
+                        <li><a href="{{ route('info.page', ['topic' => 'privacy']) }}">Privacy Policy</a></li>
+                        <li><a href="{{ route('info.page', ['topic' => 'cookies']) }}">Cookies Policy</a></li>
+                        <li><a href="{{ route('info.page', ['topic' => 'careers']) }}">Career</a></li>
                     </ul>
                 </div>
                 <div class="f-right-col">

@@ -391,7 +391,7 @@
                 <img src="{{ asset('images/icons/4.png') }}" style="width: 22px; height: 22px;">
                 Exam
             </a>
-            <a href="#" class="nav-link nav-item">
+            <a href="{{ route('quiz') }}" class="nav-link nav-item">
                 <img src="{{ asset('images/icons/5.png') }}" style="width: 22px; height: 22px;">
                 Quiz
             </a>
@@ -399,7 +399,7 @@
                 <img src="{{ asset('images/icons/6.png') }}" style="width: 22px; height: 22px;">
                 Account
             </a>
-            <a href="#" class="nav-link nav-item">
+            <a href="{{ route('wallet.address') }}" class="nav-link nav-item">
                 <img src="{{ asset('images/icons/7.png') }}" style="width: 22px; height: 22px;">
                 Wallet Address
             </a>

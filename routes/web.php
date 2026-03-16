@@ -35,9 +35,71 @@ use App\Http\Controllers\DashboardController;
 
 Route::get('/dashboard-1', [DashboardController::class, 'index'])->name('dashboard.1');
 
+Route::get('/dashboard', function () {
+    return redirect()->route('dashboard.1');
+});
+
 Route::get('/dashboard-2', function () {
     return view('auth.dashboard-2');
 })->name('dashboard.2');
+
+Route::get('/quiz', function () {
+    return view('auth.quiz');
+})->name('quiz');
+
+Route::get('/wallet-address', function () {
+    return view('auth.wallet-address');
+})->name('wallet.address');
+
+Route::get('/favorites', function () {
+    return view('auth.favorites');
+})->name('favorites');
+
+Route::get('/info/{topic}', function (string $topic) {
+    $pages = [
+        'teach' => [
+            'title' => 'Teach on IL2',
+            'description' => 'Share your knowledge as an IL2 instructor and create impactful courses.',
+        ],
+        'about' => [
+            'title' => 'About Us',
+            'description' => 'Learn how IL2 helps students and professionals grow with practical learning.',
+        ],
+        'contact' => [
+            'title' => 'Contact Us',
+            'description' => 'Get in touch with our team for account, course, or technical support.',
+        ],
+        'support' => [
+            'title' => 'Help and Support',
+            'description' => 'Find answers to common questions and support resources.',
+        ],
+        'terms' => [
+            'title' => 'Terms',
+            'description' => 'Review the terms that govern your use of the IL2 platform.',
+        ],
+        'privacy' => [
+            'title' => 'Privacy Policy',
+            'description' => 'Understand how IL2 collects, uses, and protects your data.',
+        ],
+        'cookies' => [
+            'title' => 'Cookies Policy',
+            'description' => 'See how cookies are used to improve your IL2 experience.',
+        ],
+        'careers' => [
+            'title' => 'Career',
+            'description' => 'Explore opportunities to join and grow with the IL2 team.',
+        ],
+    ];
+
+    if (! array_key_exists($topic, $pages)) {
+        abort(404);
+    }
+
+    return view('auth.info', [
+        'title' => $pages[$topic]['title'],
+        'description' => $pages[$topic]['description'],
+    ]);
+})->name('info.page');
 
 Route::get('/calendar', function () {
     return view('auth.calendar');

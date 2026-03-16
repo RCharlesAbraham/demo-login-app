@@ -247,7 +247,7 @@
                 </div>
             </div>
             <div class="header-right">
-                <a href="#" class="h-icon-btn">
+                <a href="{{ route('favorites') }}" class="h-icon-btn">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
                 </a>
                 <a href="{{ route('shopping.cart') }}" class="h-icon-btn">
@@ -287,7 +287,7 @@
                 <img src="{{ asset('images/icons/4.png') }}" style="width: 22px; height: 22px;">
                 Exam
             </a>
-            <a href="#" class="nav-item">
+            <a href="{{ route('quiz') }}" class="nav-item">
                 <img src="{{ asset('images/icons/5.png') }}" style="width: 22px; height: 22px;">
                 Quiz
             </a>
@@ -295,7 +295,7 @@
                 <img src="{{ asset('images/icons/6.png') }}" style="width: 22px; height: 22px;">
                 Account
             </a>
-            <a href="#" class="nav-item">
+            <a href="{{ route('wallet.address') }}" class="nav-item">
                 <img src="{{ asset('images/icons/7.png') }}" style="width: 22px; height: 22px;">
                 Wallet Address
             </a>
@@ -371,30 +371,30 @@
             </div>
             <div class="f-col">
                 <ul>
-                    <li><a href="#">Teach on IL2</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Help and Support</a></li>
+                    <li><a href="{{ route('info.page', ['topic' => 'teach']) }}">Teach on IL2</a></li>
+                    <li><a href="{{ route('info.page', ['topic' => 'about']) }}">About Us</a></li>
+                    <li><a href="{{ route('info.page', ['topic' => 'contact']) }}">Contact Us</a></li>
+                    <li><a href="{{ route('info.page', ['topic' => 'support']) }}">Help and Support</a></li>
                 </ul>
             </div>
             <div class="f-col">
                 <ul>
-                    <li><a href="#">Terms</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Cookies Policy</a></li>
-                    <li><a href="#">Career</a></li>
+                    <li><a href="{{ route('info.page', ['topic' => 'terms']) }}">Terms</a></li>
+                    <li><a href="{{ route('info.page', ['topic' => 'privacy']) }}">Privacy Policy</a></li>
+                    <li><a href="{{ route('info.page', ['topic' => 'cookies']) }}">Cookies Policy</a></li>
+                    <li><a href="{{ route('info.page', ['topic' => 'careers']) }}">Career</a></li>
                 </ul>
             </div>
             <div class="f-right">
                 <select class="f-lang-select"><option>English</option><option>Thai</option></select>
                 <div class="f-socials">
-                    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"></a>
-                    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg"></a>
-                    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Twitter_Logo.png"></a>
+                    <a href="https://www.facebook.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"></a>
+                    <a href="https://www.instagram.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg"></a>
+                    <a href="https://x.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Twitter_Logo.png"></a>
                 </div>
                 <div class="f-apps">
-                    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"></a>
-                    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg"></a>
+                    <a href="https://play.google.com/store"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"></a>
+                    <a href="https://www.apple.com/app-store/"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg"></a>
                 </div>
             </div>
         </footer>

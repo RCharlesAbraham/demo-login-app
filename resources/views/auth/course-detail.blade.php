@@ -190,7 +190,7 @@
                 </div>
             </div>
             <div class="h-right">
-                <a href="#" class="h-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></a>
+                <a href="{{ route('favorites') }}" class="h-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></a>
                 <a href="{{ route('shopping.cart') }}" class="h-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></a>
                 <div class="h-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
@@ -220,13 +220,13 @@
             <a href="{{ route('courses') }}" class="nav-link active">
                 <img src="{{ asset('images/icons/4.png') }}"> Exam
             </a>
-            <a href="#" class="nav-link">
+            <a href="{{ route('quiz') }}" class="nav-link">
                 <img src="{{ asset('images/icons/5.png') }}"> Quiz
             </a>
             <a href="{{ route('account.new') }}" class="nav-link">
                 <img src="{{ asset('images/icons/6.png') }}"> Account
             </a>
-            <a href="#" class="nav-link">
+            <a href="{{ route('wallet.address') }}" class="nav-link">
                 <img src="{{ asset('images/icons/7.png') }}"> Wallet Address
             </a>
             <a href="{{ route('transaction') }}" class="nav-link">
@@ -251,8 +251,8 @@
                             </div>
                         </div>
                         <div class="t-actions-wrap">
-                            <a href="#" class="btn-pill-small">Save</a>
-                            <a href="#" class="btn-pill-small">Share</a>
+                            <a href="{{ route('favorites') }}" class="btn-pill-small">Save</a>
+                            <a href="{{ route('recommendations') }}" class="btn-pill-small">Share</a>
                         </div>
                     </div>
 
@@ -315,7 +315,7 @@
                             <span class="pill-tag">Order Fulfilment</span>
                             <span class="pill-tag">Process Optimization</span>
                             <span class="pill-tag">Sales</span>
-                            <a href="#" class="show-all-link">Show all</a>
+                            <a href="{{ route('courses') }}" class="show-all-link">Show all</a>
                         </div>
                     </div>
 
@@ -338,7 +338,7 @@
                                 <h4>Get a free sessions - hello maths</h4>
                                 <p>Watch your favorite guide's free content</p>
                             </div>
-                            <a href="#" class="btn-free">Free</a>
+                            <a href="{{ route('free.courses') }}" class="btn-free">Free</a>
                         </div>
 
                         <div class="feature-v-grid">
