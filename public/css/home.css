@@ -213,6 +213,134 @@ img {
     color: #1e293b;
 }
 
+/* MOBILE MENU STYLES */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #0f3c6e;
+    padding: 8px;
+    z-index: 2001;
+}
+
+.mobile-nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+}
+
+.mobile-nav-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-side-nav {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 300px;
+    height: 100%;
+    background: #fff;
+    z-index: 10001;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-side-nav.active {
+    right: 0;
+}
+
+.mobile-nav-header {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.close-mobile-nav {
+    background: #f1f5f9;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #64748b;
+}
+
+.mobile-nav-body {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.mobile-search-box input {
+    width: 100%;
+    padding: 12px 20px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+    font-size: 14px;
+}
+
+.mobile-nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.mobile-nav-links a {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1e293b;
+    text-decoration: none;
+    display: block;
+    padding: 10px 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.mobile-nav-footer {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mobile-user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: #1e293b;
+    font-weight: 600;
+}
+
+.avatar-circle {
+    width: 40px;
+    height: 40px;
+    background: #e2e8f0;
+    border-radius: 50%;
+}
+
 /* SEARCH DROPDOWN */
 .search-dropdown {
     display: none;
@@ -1271,8 +1399,9 @@ img {
     }
 
     .features-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 30px;
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 30px !important;
     }
 }
 
@@ -1280,22 +1409,25 @@ img {
     /* Header Responsive */
     .glass-header {
         padding: 8px 15px !important;
+        justify-content: space-between !important;
     }
     
-    .category-btn, .search-box {
+    .category-btn, .search-box, .header-right .icon-btn:not([title="Notifications"]), .user-profile {
         display: none !important; /* Hide bulky items on mobile */
     }
 
+    .mobile-menu-toggle {
+        display: block !important;
+    }
+
     .header-left {
-        gap: 10px !important;
+        gap: 15px !important;
+        flex: none !important;
     }
 
     .header-right {
         gap: 10px !important;
-    }
-
-    .user-profile span {
-        display: none !important; /* Hide 'Student' text */
+        flex: none !important;
     }
 
     /* Hero Section Responsive */
@@ -1307,7 +1439,9 @@ img {
         grid-template-columns: 1fr !important;
         padding: 40px 20px !important;
         text-align: center;
-        gap: 30px !important;
+        gap: 20px !important;
+        height: auto !important;
+        width: 100% !important;
     }
 
     .hero-left-column {
@@ -1316,7 +1450,8 @@ img {
     }
 
     .hero-img-math {
-        max-width: 250px !important;
+        max-width: 100% !important;
+        width: 200px !important;
         margin: 0 auto;
     }
 
@@ -1327,11 +1462,13 @@ img {
     .hero-title-main {
         font-size: 32px !important;
         line-height: 1.2 !important;
+        max-width: 100% !important;
     }
 
     .hero-desc-main {
         font-size: 14px !important;
         margin: 15px auto !important;
+        max-width: 100% !important;
     }
 
     .hero-action-btns {
@@ -1341,9 +1478,14 @@ img {
 
     /* Features Section */
     .features-grid {
+        display: grid !important;
         grid-template-columns: 1fr !important;
         gap: 20px !important;
-        padding: 30px 20px !important;
+        padding: 20px !important;
+    }
+
+    .feature-card {
+        width: 100% !important;
     }
 
     /* Wide Range Section */
@@ -1354,6 +1496,7 @@ img {
 
     .wide-range-left {
         width: 100% !important;
+        flex: none !important;
     }
 
     .wide-range-left h2 {
@@ -1370,7 +1513,18 @@ img {
 
     .wr-img-block {
         width: 100% !important;
+        max-width: 350px !important;
         margin: 0 !important;
+        flex: none !important;
+    }
+
+    .wr-img-1 img, .wr-img-2 img {
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    .wide-range-right {
+        width: 100% !important;
     }
 
     .category-cards-grid {
@@ -1379,15 +1533,27 @@ img {
     }
 
     /* Generic Course Grids */
-    .live-classes-grid,
-    .course-cards-row {
+    .live-classes-grid {
         grid-template-columns: 1fr !important;
         gap: 20px !important;
+        display: grid !important;
+    }
+
+    .course-cards-row {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+        overflow-x: hidden !important;
+    }
+
+    .course-section-header {
+        flex-direction: column !important;
+        gap: 15px !important;
     }
 
     .career-section,
     .course-section {
-        padding: 40px 15px !important;
+        padding: 40px 20px !important;
     }
 
     /* Footer Responsive */
@@ -1398,25 +1564,26 @@ img {
     .home-footer-inner {
         display: flex !important;
         flex-direction: column !important;
-        gap: 30px !important;
+        gap: 40px !important;
         text-align: center;
     }
 
     .footer-brand-section {
-        align-items: center;
+        align-items: center !important;
     }
 
     .footer-brand-section p {
-        text-align: center;
-        margin: 0 auto;
+        text-align: center !important;
+        margin: 0 auto !important;
     }
 
     .footer-right-section {
         align-items: center !important;
+        width: 100% !important;
     }
 
     .app-btns {
-        justify-content: center;
+        justify-content: center !important;
     }
 }
 
@@ -1432,4 +1599,8 @@ img {
     .hero-action-btns {
         flex-direction: column;
     }
-}
+
+    .section-heading-center {
+        font-size: 24px !important;
+    }
+}

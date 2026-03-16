@@ -50,8 +50,49 @@
                 <span>Student</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
             </a>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
         </div>
     </header>
+
+    <!-- Mobile Sidebar Nav -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+    <div class="mobile-side-nav" id="mobileSideNav">
+        <div class="mobile-nav-header">
+            <img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo">
+            <button class="close-mobile-nav" id="closeMobileNav">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+        <div class="mobile-nav-body">
+            <div class="mobile-search-box">
+                <form action="{{ route('search') }}" method="GET">
+                    <input type="text" placeholder="Search courses..." name="q">
+                </form>
+            </div>
+            <ul class="mobile-nav-links">
+                <li><a href="{{ route('home') }}">Home</a></li>
+                <li><a href="{{ route('category') }}">Categories</a></li>
+                <li><a href="{{ route('courses') }}">All Courses</a></li>
+                <li><a href="{{ route('free.courses') }}">Free Courses</a></li>
+                <li><a href="{{ route('dashboard.1') }}">My Dashboard</a></li>
+            </ul>
+            <div class="mobile-nav-footer">
+                @guest
+                    <a href="{{ route('login') }}" class="btn-step-1">Login</a>
+                    <a href="{{ route('register') }}" class="btn-step-1" style="background: transparent; color: #0f3c6e; border: 1px solid #0f3c6e;">Signup</a>
+                @else
+                    <a href="{{ route('account.new') }}" class="mobile-user-profile">
+                        <div class="avatar-circle"></div>
+                        <span>Student Profile</span>
+                    </a>
+                @endguest
+            </div>
+        </div>
+    </div>
 
     <!-- HERO SECTION - STEP 1: CLEARING AND RESTRUCTURING -->
     <section class="hero-section hero-step-1-wrapper">
@@ -468,12 +509,32 @@
     </footer>
 
     <script>
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const closeMobileNav = document.getElementById('closeMobileNav');
+        const mobileSideNav = document.getElementById('mobileSideNav');
+        const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+
+        function toggleMobileNav() {
+            mobileSideNav.classList.toggle('active');
+            mobileNavOverlay.classList.toggle('active');
+            document.body.style.overflow = mobileSideNav.classList.contains('active') ? 'hidden' : '';
+        }
+
+        if(mobileMenuToggle) mobileMenuToggle.addEventListener('click', toggleMobileNav);
+        if(closeMobileNav) closeMobileNav.addEventListener('click', toggleMobileNav);
+        if(mobileNavOverlay) mobileNavOverlay.addEventListener('click', toggleMobileNav);
+
         // Search dropdown toggle
         const searchInput = document.getElementById('homeSearchInput');
         const searchDropdown = document.getElementById('searchDropdown');
-        searchInput.addEventListener('focus', () => { searchDropdown.style.display = 'block'; });
+        if(searchInput) {
+            searchInput.addEventListener('focus', () => { if(searchDropdown) searchDropdown.style.display = 'block'; });
+        }
         document.addEventListener('click', (e) => {
-            if (!e.target.closest('.search-bar')) searchDropdown.style.display = 'none';
+            if (searchInput && !e.target.closest('.search-bar')) {
+                if(searchDropdown) searchDropdown.style.display = 'none';
+            }
         });
         // Search tabs
         document.querySelectorAll('.search-tab').forEach(tab => {
