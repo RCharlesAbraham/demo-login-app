@@ -1,76 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course Detail | Mathematic Class</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
-    <style>
-        :root {
-            --primary: #003a70;
-            --primary-dark: #002b55;
-            --orange: #f97316;
-            --bg: #eff3f7;
-            --text-dark: #1e293b;
-            --text-muted: #94a3b8;
-            --white: #ffffff;
-            --tab-border: #e2e8f0;
-        }
+@extends('layouts.dashboard')
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-        body { background-color: var(--bg); color: var(--text-dark); overflow-x: hidden; }
+@section('title', 'Course Detail | IL² RMUTTO')
 
-        /* ─── HEADER ─── */
-        header { 
-            background: transparent; padding: 25px 30px 10px; display: flex; justify-content: center; 
-            position: relative; z-index: 1000;
-        }
-        .header-pill {
-            width: 100%; max-width: 1600px; display: flex; align-items: center; justify-content: space-between;
-            background: #fff; padding: 12px 30px; border-radius: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-        }
-        .h-left { display: flex; align-items: center; gap: 25px; }
-        .logo img { height: 42px; display: block; }
-        .cat-dropdown { 
-            display: flex; align-items: center; gap: 10px; background: #f1f5f9; padding: 12px 22px; 
-            border-radius: 30px; font-size: 14px; font-weight: 500; color: #64748b; border: 1.5px solid #e2e8f0; cursor: pointer; text-decoration: none;
-        }
-        .search-wrap { position: relative; width: 320px; }
-        .search-wrap input { 
-            width: 100%; height: 48px; background: #f1f5f9; border: none; border-radius: 30px; 
-            padding: 0 15px 0 45px; font-size: 14px; outline: none; transition: 0.2s;
-        }
-        .search-wrap svg { position: absolute; left: 18px; top: 16px; color: #94a3b8; }
-        .search-wrap input:focus { background: #fff; box-shadow: 0 0 0 2px #e2e8f0; }
+@push('styles')
+<style>
 
-        .h-right { display: flex; align-items: center; gap: 20px; }
-        .h-icon { color: #64748b; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; position: relative; text-decoration: none; }
-        .notif-badge { 
-            position: absolute; top: 4px; right: 4px; background: var(--orange); color: #fff; 
-            font-size: 9px; font-weight: 800; width: 15px; height: 15px; border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center; border: 2px solid #fff; 
-        }
-        .profile-btn { 
-            display: flex; align-items: center; gap: 12px; padding: 6px 18px 6px 6px; 
-            border-radius: 40px; background: #f8fafc; border: 1.5px solid #e2e8f0; text-decoration: none; color: inherit; font-weight: 700; font-size: 14px;
-        }
-        .avatar-circle { width: 36px; height: 36px; border-radius: 50%; background: #94a3b8; }
 
-        /* ─── LAYOUT ─── */
-        .wrapper { display: flex; max-width: 1600px; margin: 15px auto 40px; padding: 0 30px; gap: 30px; }
+        
+        
 
-        /* ─── SIDEBAR ─── */
-        .sidebar { 
-            width: 200px; padding: 20px 0; height: fit-content; flex-shrink: 0;
-        }
-        .nav-link { 
-            display: flex; align-items: center; gap: 16px; padding: 12px 20px; border-radius: 12px; 
-            text-decoration: none; color: #475569; font-size: 14px; font-weight: 500; margin-bottom: 5px; transition: 0.2s; 
-        }
-        .nav-link:hover { background: #fff; color: #000; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
-        .nav-link.active { background: #fff; color: #000; font-weight: 700; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
-        .nav-link img { width: 20px; height: 20px; }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+
+        
+        
+
+        
+        
+        
+        
+        
+        
 
         /* ─── MAIN CONTENT ─── */
         .content { 
@@ -170,72 +134,16 @@
         .fv-item img { width: 32px; height: 32px; }
         .fv-item .lab { font-size: 14px; font-weight: 800; color: #0f172a; }
         .fv-item .val { font-size: 12px; color: #94a3b8; font-weight: 600; }
+</style>
+@endpush
 
-    </style>
-</head>
-<body>
+@section('dashboard-content')
+<!-- ── HEADER ── -->
+    
 
-    <!-- ── HEADER ── -->
-    <header>
-        <div class="header-pill">
-            <div class="h-left">
-                <a href="{{ route('home') }}" class="logo"><img src="{{ asset('images/logo.png') }}" alt="Logo"></a>
-                <a href="{{ route('category') }}" class="cat-dropdown">
-                    Categories
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
-                </a>
-                <div class="search-wrap">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                    <input type="text" placeholder="Search here">
-                </div>
-            </div>
-            <div class="h-right">
-                <a href="{{ route('favorites') }}" class="h-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></a>
-                <a href="{{ route('shopping.cart') }}" class="h-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></a>
-                <div class="h-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-                    <span class="notif-badge">2</span>
-                </div>
-                <a href="{{ route('account.new') }}" class="profile-btn">
-                    <div class="avatar-circle"></div>
-                    <span>Student</span>
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" opacity="0.6"><path d="m6 9 6 6 6-6"/></svg>
-                </a>
-            </div>
-        </div>
-    </header>
-
-    <div class="wrapper">
+    <div class="app-container" style="max-width: 1450px; margin: 0 auto; padding: 20px 0; width: 100%;">
         <!-- ── SIDEBAR ── -->
-        <aside class="sidebar">
-            <a href="{{ route('home') }}" class="nav-link">
-                <img src="{{ asset('images/icons/1.png') }}"> Dashboard
-            </a>
-            <a href="{{ route('calendar') }}" class="nav-link">
-                <img src="{{ asset('images/icons/2.png') }}"> Calendar
-            </a>
-            <a href="{{ route('learning') }}" class="nav-link">
-                <img src="{{ asset('images/icons/3.png') }}"> Learning
-            </a>
-            <a href="{{ route('courses') }}" class="nav-link active">
-                <img src="{{ asset('images/icons/4.png') }}"> Exam
-            </a>
-            <a href="{{ route('quiz') }}" class="nav-link">
-                <img src="{{ asset('images/icons/5.png') }}"> Quiz
-            </a>
-            <a href="{{ route('account.new') }}" class="nav-link">
-                <img src="{{ asset('images/icons/6.png') }}"> Account
-            </a>
-            <a href="{{ route('wallet.address') }}" class="nav-link">
-                <img src="{{ asset('images/icons/7.png') }}"> Wallet Address
-            </a>
-            <a href="{{ route('transaction') }}" class="nav-link">
-                <img src="{{ asset('images/icons/8.png') }}"> Transaction
-            </a>
-            <a href="{{ route('payment.method') }}" class="nav-link">
-                <img src="{{ asset('images/icons/9.png') }}"> Payment
-            </a>
-        </aside>
+        
 
         <!-- ── MAIN CONTENT ── -->
         <main class="content">
@@ -369,6 +277,4 @@
 
         </main>
     </div>
-
-</body>
-</html>
+@endsection

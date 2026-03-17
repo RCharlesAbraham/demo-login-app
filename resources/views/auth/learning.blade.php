@@ -1,54 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learning</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #004b87;
-            --teal: #14a098;
-            --bg-body: #f1f4f8;
-            --white: #ffffff;
-            --text-dark: #1e293b;
-            --text-muted: #64748b;
-            --card-gray: #e2e8f0;
-        }
+@extends('layouts.dashboard')
 
-        body {
-            background-color: var(--bg-body);
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 0;
-            color: var(--text-dark);
-        }
+@section('title', 'Learning | IL² RMUTTO')
+
+@push('styles')
+<style>
+
+
+        
 
         /* HEADER */
-        header {
-            padding: 24px 30px;
-            display: flex;
-            justify-content: center;
-        }
+        
 
-        .header-pill {
-            background: var(--white);
-            width: 100%;
-            max-width: 1500px;
-            height: 72px;
-            border-radius: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-        }
+        
 
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
+        
 
         .logo-img { height: 35px; }
 
@@ -91,11 +56,7 @@
             color: #94a3b8;
         }
 
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
+        
 
         .h-icon {
             color: #64748b;
@@ -144,42 +105,14 @@
         }
 
         /* MAIN LAYOUT */
-        .wrapper {
-            display: flex;
-            max-width: 1500px;
-            margin: 0 auto;
-            padding: 0 30px;
-            gap: 30px;
-        }
 
         /* SIDEBAR */
-        .sidebar {
-            width: 240px;
-            background: var(--white);
-            border-radius: 24px;
-            padding: 30px 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-        }
+        
 
-        .nav-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 14px 20px;
-            border-radius: 12px;
-            color: #475569;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            margin-bottom: 5px;
-            transition: 0.2s;
-        }
+        
 
-        .nav-item svg { width: 18px; height: 18px; opacity: 0.7; }
-        .nav-item:hover, .nav-item.active {
-            background: #f8fafc;
-            color: #0f172a;
-        }
+        
+        
 
         /* CONTENT */
         .content {
@@ -254,12 +187,7 @@
             flex-direction: column;
         }
 
-        .cc-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
+        .cc-
 
         .cc-date {
             font-size: 12px;
@@ -326,82 +254,12 @@
             border-top: 1px solid #f1f5f9;
             padding-top: 20px;
         }
+</style>
+@endpush
 
-    </style>
-</head>
-<body>
-
-    <header>
-        <div class="header-pill">
-            <div class="header-left">
-                <img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo-img">
-                <div class="cat-btn">
-                    Categories 
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
-                </div>
-                <div class="search-box">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                    <input type="text" placeholder="Search here">
-                </div>
-            </div>
-            
-            <div class="header-right">
-                <div class="h-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
-                <div class="h-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div>
-                <div class="h-icon">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-                    <div class="badge">2</div>
-                </div>
-                <a href="{{ route('account.new') }}" style="text-decoration: none;">
-                    <div class="user-profile">
-                        <div class="avatar"></div>
-                        <span>Student</span>
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </header>
-
-    <div class="wrapper">
-        <aside class="sidebar">
-            <a href="{{ route('dashboard.1') }}" class="nav-link nav-item">
-                <img src="{{ asset('images/icons/1.png') }}" style="width: 22px; height: 22px;">
-                Dashboard
-            </a>
-            <a href="{{ route('calendar') }}" class="nav-link nav-item">
-                <img src="{{ asset('images/icons/2.png') }}" style="width: 22px; height: 22px;">
-                Calendar
-            </a>
-            <a href="{{ route('learning') }}" class="nav-link nav-item active">
-                <img src="{{ asset('images/icons/3.png') }}" style="width: 22px; height: 22px;">
-                Learning
-            </a>
-            <a href="{{ route('courses') }}" class="nav-link nav-item">
-                <img src="{{ asset('images/icons/4.png') }}" style="width: 22px; height: 22px;">
-                Exam
-            </a>
-            <a href="{{ route('quiz') }}" class="nav-link nav-item">
-                <img src="{{ asset('images/icons/5.png') }}" style="width: 22px; height: 22px;">
-                Quiz
-            </a>
-            <a href="{{ route('account.new') }}" class="nav-link nav-item">
-                <img src="{{ asset('images/icons/6.png') }}" style="width: 22px; height: 22px;">
-                Account
-            </a>
-            <a href="{{ route('wallet.address') }}" class="nav-link nav-item">
-                <img src="{{ asset('images/icons/7.png') }}" style="width: 22px; height: 22px;">
-                Wallet Address
-            </a>
-            <a href="{{ route('transaction') }}" class="nav-link nav-item">
-                <img src="{{ asset('images/icons/8.png') }}" style="width: 22px; height: 22px;">
-                Transaction
-            </a>
-            <a href="{{ route('payment.method') }}" class="nav-link nav-item">
-                <img src="{{ asset('images/icons/9.png') }}" style="width: 22px; height: 22px;">
-                Payment
-            </a>
-        </aside>
+@section('dashboard-content')
+<div class="dashboard-page-content">
+        
 
         <main class="content">
             <h2 class="page-title">Learning</h2>
@@ -437,6 +295,4 @@
             </div>
         </main>
     </div>
-
-</body>
-</html>
+@endsection

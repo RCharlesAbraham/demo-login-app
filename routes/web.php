@@ -159,7 +159,7 @@ Route::get('/verify', function () {
 
 // POST Routes for UI Flow Demo
 Route::post('/login', function () {
-    return redirect()->route('home'); // Flow: Login -> Home
+    return redirect()->route('dashboard.1'); // Flow: Login -> Dashboard 1
 })->name('login.post');
 
 Route::post('/forgot-password', function () {
