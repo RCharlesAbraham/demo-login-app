@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
     return view('auth.home');
@@ -157,26 +158,11 @@ Route::get('/verify', function () {
     return view('auth.verify');
 })->name('verification.notice');
 
-// POST Routes for UI Flow Demo
-Route::post('/login', function () {
-    return redirect()->route('dashboard.1'); // Flow: Login -> Dashboard 1
-})->name('login.post');
-
-Route::post('/forgot-password', function () {
-    return redirect()->route('verification.notice'); // Flow: Forgot -> Verify
-})->name('password.email');
-
-Route::post('/verify', function () {
-    return redirect()->route('password.reset'); // Flow: Verify -> Reset Password
-})->name('verification.verify');
-
-Route::post('/reset-password', function () {
-    return redirect()->route('login'); // Flow: Reset -> Login
-})->name('password.update');
-
-Route::post('/register', function () {
-    return redirect()->route('login'); // Flow: Register -> Login
-})->name('register.post');
+// POST Routes for Authenticaton
+Route::post('/login', [AuthController::class, 'loginPost'])->name('login.post');
+Route::post('/register', [AuthController::class, 'registerPost'])->name('register.post');
+Route::post('/forgot-password', [AuthController::class, 'forgotPasswordPost'])->name('password.email');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/category', function () {
     return view('auth.category');

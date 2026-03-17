@@ -16,6 +16,19 @@
         <!-- Form Section -->
         <form action="{{ route('password.email') }}" method="POST" class="auth-form" id="forgotPasswordForm">
             @csrf
+
+            @if (session('success'))
+                <div style="color: green; margin-bottom: 20px; font-weight: 600; font-size: 14px; text-align: center;">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if ($errors->any())
+                <div style="color: red; margin-bottom: 15px; font-size: 14px; text-align: center;">
+                    {{ $errors->first() }}
+                </div>
+            @endif
+
             <div class="input-group" style="margin-bottom: 40px;">
                 <input type="email" id="email" name="email" placeholder="Email" required>
             </div>

@@ -31,6 +31,12 @@
         <form action="{{ route('login.post') }}" method="POST" class="auth-form" id="loginForm">
             @csrf
 
+            @if ($errors->any())
+                <div style="color: red; margin-bottom: 15px; font-size: 14px;">
+                    {{ $errors->first() }}
+                </div>
+            @endif
+
             <div class="input-group">
                 <input type="text" id="username" name="username" placeholder="Email or Username" required>
             </div>

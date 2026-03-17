@@ -21,9 +21,17 @@
                 </div>
             </div>
 
-            <!-- Signup Form -->
             <form action="{{ route('register.post') }}" method="POST" class="auth-form">
                 @csrf
+
+                @if ($errors->any())
+                    <div style="color: red; margin-bottom: 20px; font-size: 14px;">
+                        @foreach ($errors->all() as $error)
+                            <div>- {{ $error }}</div>
+                        @endforeach
+                    </div>
+                @endif
+
                 <div class="form-grid">
                     <!-- Row 1 -->
                     <div class="label-field">

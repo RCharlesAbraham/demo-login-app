@@ -182,9 +182,9 @@
                 <div class="card">
                     <div class="calendar-nav-bar">
                         <div class="month-selector">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="cursor:pointer; opacity: 0.4;"><path d="m15 18-6-6 6-6"/></svg>
-                            December 2023
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="cursor:pointer; opacity: 0.4;"><path d="m9 18 6-6-6-6"/></svg>
+                            <svg id="prevMonth" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="cursor:pointer; opacity: 0.8; transition: 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'"><path d="m15 18-6-6 6-6"/></svg>
+                            <span id="monthDisplay">December 2023</span>
+                            <svg id="nextMonth" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="cursor:pointer; opacity: 0.8; transition: 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'"><path d="m9 18 6-6-6-6"/></svg>
                         </div>
                         <div class="tab-group">
                             <button class="tab-btn">Daily</button><button class="tab-btn">Weekly</button><button class="tab-btn active">Monthly</button><button class="tab-btn">Yearly</button>
@@ -192,19 +192,8 @@
                         <button class="btn-new-schedule">+New Schedule</button>
                     </div>
 
-                    <div class="calendar-grid">
-                        <div class="day-label">Monday</div><div class="day-label">Tuesday</div><div class="day-label">Wednesday</div><div class="day-label">Thursday</div><div class="day-label">Friday</div><div class="day-label">Saturday</div><div class="day-label">Sunday</div>
-                        
-                        <div class="cal-cell inactive">30</div><div class="cal-cell">1</div><div class="cal-cell">2</div>
-                        <div class="cal-cell">
-                            <div class="date-num"><div class="circle-num">3</div></div>
-                            <div class="event-box"><h5>Maths Clas..</h5><p>Teacher 2</p></div>
-                        </div>
-                        <div class="cal-cell">4</div><div class="cal-cell">5</div><div class="cal-cell">6</div>
-                        <div class="cal-cell">7</div><div class="cal-cell">8</div><div class="cal-cell">9</div><div class="cal-cell">10</div><div class="cal-cell">11</div><div class="cal-cell">12</div><div class="cal-cell">13</div>
-                        <div class="cal-cell">14</div><div class="cal-cell">15</div><div class="cal-cell">16</div><div class="cal-cell">17</div><div class="cal-cell">18</div><div class="cal-cell">19</div><div class="cal-cell today-cell">20</div>
-                        <div class="cal-cell">21</div><div class="cal-cell">22</div><div class="cal-cell">23</div><div class="cal-cell">24</div><div class="cal-cell">25</div><div class="cal-cell">26</div><div class="cal-cell">27</div>
-                        <div class="cal-cell">28</div><div class="cal-cell">29</div><div class="cal-cell">30</div><div class="cal-cell">31</div><div class="cal-cell inactive">1</div><div class="cal-cell inactive">2</div><div class="cal-cell inactive">3</div>
+                    <div class="calendar-grid" id="calendarGrid">
+                        <!-- Dynamic calendar logic will build the grid here -->
                     </div>
                 </div>
             </div>
@@ -219,7 +208,7 @@
                 </div>
 
                 <div class="card" style="padding-bottom: 20px;">
-                    <div class="sched-day-name">December 20, Sunday</div>
+                    <div class="sched-day-name" id="scheduleDayName">December 20, Sunday</div>
                     
                     <div class="sched-card">
                         <div class="sched-time">09:00 am<span>to</span>10:00 am</div>
@@ -303,5 +292,117 @@
                 document.getElementById(id).style.display = 'none';
             }
         }
+
+        // --- DYNAMIC CALENDAR LOGIC ---
+        document.addEventListener('DOMContentLoaded', function() {
+            const monthDisplay = document.getElementById('monthDisplay');
+            const calendarGrid = document.getElementById('calendarGrid');
+            const prevMonthBtn = document.getElementById('prevMonth');
+            const nextMonthBtn = document.getElementById('nextMonth');
+            const scheduleDayName = document.getElementById('scheduleDayName');
+
+            let currentDate = new Date();
+
+            // Demo events bound to specific dates
+            const dummyEvents = {
+                3: { title: "Maths Class", subtitle: "Teacher 2", color: "f472b6" },
+                12: { title: "Science Lab", subtitle: "Teacher 4", color: "3b82f6" },
+                22: { title: "History Exam", subtitle: "Teacher 1", color: "f97316" },
+            };
+
+            function renderCalendar() {
+                const year = currentDate.getFullYear();
+                const month = currentDate.getMonth();
+                const today = new Date();
+
+                const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+                
+                monthDisplay.textContent = `${monthNames[month]} ${year}`;
+                
+                // Set Schedule sidebar title
+                if(year === today.getFullYear() && month === today.getMonth()) {
+                    scheduleDayName.textContent = `${monthNames[month]} ${today.getDate()}, ${dayNames[today.getDay()]}`;
+                } else {
+                    const firstDayOfMonth = new Date(year, month, 1);
+                    scheduleDayName.textContent = `${monthNames[month]} 1, ${dayNames[firstDayOfMonth.getDay()]}`;
+                }
+
+                // Inject Labels
+                let gridHtml = `
+                    <div class="day-label">Monday</div>
+                    <div class="day-label">Tuesday</div>
+                    <div class="day-label">Wednesday</div>
+                    <div class="day-label">Thursday</div>
+                    <div class="day-label">Friday</div>
+                    <div class="day-label">Saturday</div>
+                    <div class="day-label">Sunday</div>
+                `;
+
+                // Calculate padding cells
+                const firstDayIndex = new Date(year, month, 1).getDay(); 
+                let startDay = firstDayIndex === 0 ? 6 : firstDayIndex - 1; // Align to Monday start
+
+                const daysInMonth = new Date(year, month + 1, 0).getDate();
+                const prevMonthDays = new Date(year, month, 0).getDate();
+
+                // Generate Previous month inactive days
+                for (let i = startDay; i > 0; i--) {
+                    gridHtml += `<div class="cal-cell inactive">${prevMonthDays - i + 1}</div>`;
+                }
+
+                // Generate Current month days
+                for (let i = 1; i <= daysInMonth; i++) {
+                    let cellClass = "cal-cell";
+                    let isToday = (i === today.getDate() && month === today.getMonth() && year === today.getFullYear());
+                    
+                    if (isToday) cellClass += " today-cell";
+
+                    let dayContent = `${i}`;
+                    
+                    if (dummyEvents[i]) {
+                        // Days that have an event
+                        const evt = dummyEvents[i];
+                        dayContent = `
+                            <div class="date-num">
+                                <div class="circle-num" style="background:#6366f1;">${i}</div>
+                            </div>
+                            <div class="event-box" style="border-left-color: #${evt.color}; background: #${evt.color}15;">
+                                <h5>${evt.title}</h5>
+                                <p>${evt.subtitle}</p>
+                            </div>
+                        `;
+                    } else if (isToday) {
+                        // Today with no event
+                        dayContent = `<div class="date-num"><div class="circle-num" style="background:var(--primary);">${i}</div></div>`;
+                    }
+
+                    gridHtml += `<div class="${cellClass}">${dayContent}</div>`;
+                }
+
+                // Generate Next month inactive days to fill rows
+                const totalCells = startDay + daysInMonth;
+                const nextDays = Math.ceil(totalCells / 7) * 7 - totalCells;
+
+                for (let i = 1; i <= nextDays; i++) {
+                    gridHtml += `<div class="cal-cell inactive">${i}</div>`;
+                }
+
+                calendarGrid.innerHTML = gridHtml;
+            }
+
+            prevMonthBtn.addEventListener('click', () => {
+                currentDate.setMonth(currentDate.getMonth() - 1);
+                renderCalendar();
+            });
+
+            nextMonthBtn.addEventListener('click', () => {
+                currentDate.setMonth(currentDate.getMonth() + 1);
+                renderCalendar();
+            });
+
+            // Initial render
+            renderCalendar();
+        });
     </script>
 @endsection
