@@ -16,22 +16,48 @@ class AuthController extends Controller
             'password' => 'required|string',
         ]);
 
-        // Support login by email OR username
-        $loginType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-        
-        $loginAttempt = [
-            $loginType => $credentials['username'],
-            'password' => $credentials['password']
-        ];
+        $loginInput = trim($credentials['username']);
+        $plainPassword = $credentials['password'];
 
-        if (Auth::attempt($loginAttempt)) {
-            $request->session()->regenerate();
-            return redirect()->route('dashboard.1');
+        $userQuery = User::query();
+
+        if (filter_var($loginInput, FILTER_VALIDATE_EMAIL)) {
+            $userQuery->where('email', $loginInput);
+        } else {
+            // Allow login by username and keep email/name fallback for older records.
+            $userQuery->where('username', $loginInput)
+                ->orWhere('email', $loginInput)
+                ->orWhere('name', $loginInput);
         }
 
-        return back()->withErrors([
-            'username' => 'The provided credentials do not match our records.',
-        ])->onlyInput('username');
+        $user = $userQuery->first();
+
+        if (! $user) {
+            return back()->withErrors([
+                'username' => 'The provided credentials do not match our records.',
+            ])->onlyInput('username');
+        }
+
+        $isHashedMatch = Hash::check($plainPassword, (string) $user->password);
+        $isLegacyPlainMatch = ! $isHashedMatch && hash_equals((string) $user->password, $plainPassword);
+
+        if (! $isHashedMatch && ! $isLegacyPlainMatch) {
+            return back()->withErrors([
+                'username' => 'The provided credentials do not match our records.',
+            ])->onlyInput('username');
+        }
+
+        if ($isLegacyPlainMatch) {
+            // Upgrade legacy plain-text passwords to secure hash on first valid login.
+            $user->password = Hash::make($plainPassword);
+            $user->save();
+        }
+
+        Auth::login($user);
+        $request->session()->regenerate();
+
+        return redirect()->route('dashboard.1');
+
     }
 
     public function registerPost(Request $request)
@@ -59,6 +85,7 @@ class AuthController extends Controller
         ]);
 
         Auth::login($user);
+        $request->session()->regenerate();
 
         return redirect()->route('dashboard.1');
     }

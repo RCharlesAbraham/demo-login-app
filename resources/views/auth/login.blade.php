@@ -31,14 +31,20 @@
         <form action="{{ route('login.post') }}" method="POST" class="auth-form" id="loginForm">
             @csrf
 
-            @if ($errors->any())
-                <div style="color: red; margin-bottom: 15px; font-size: 14px;">
-                    {{ $errors->first() }}
+            @if ($errors->has('session'))
+                <div style="color: #b91c1c; background: #fee2e2; border: 1px solid #fecaca; border-radius: 10px; padding: 10px 12px; margin-bottom: 12px; font-size: 14px;">
+                    {{ $errors->first('session') }}
+                </div>
+            @endif
+
+            @if ($errors->has('username'))
+                <div style="color: #b91c1c; background: #fee2e2; border: 1px solid #fecaca; border-radius: 10px; padding: 10px 12px; margin-bottom: 12px; font-size: 14px;">
+                    {{ $errors->first('username') }}
                 </div>
             @endif
 
             <div class="input-group">
-                <input type="text" id="username" name="username" placeholder="Email or Username" required>
+                <input type="text" id="username" name="username" value="{{ old('username') }}" placeholder="Email or Username" required>
             </div>
 
             <div class="input-group password-group">
