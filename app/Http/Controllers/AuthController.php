@@ -44,7 +44,7 @@ class AuthController extends Controller
             'dob' => 'required|string',
             'phone' => 'required|string',
             'country' => 'required|string',
-            'role' => 'required|string'
+            'role' => 'nullable|in:learner,guide'
         ]);
 
         $user = User::create([
@@ -55,7 +55,7 @@ class AuthController extends Controller
             'dob' => $validated['dob'],
             'phone' => $validated['phone'],
             'country' => $validated['country'],
-            'role' => $validated['role'],
+            'role' => $validated['role'] ?? 'learner',
         ]);
 
         Auth::login($user);

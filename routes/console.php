@@ -22,6 +22,8 @@ Artisan::command('db:ping', function () {
     $this->line('SESSION_DRIVER=' . config('session.driver'));
     $this->line('SESSION_COOKIE=' . config('session.cookie'));
     $this->line('SESSION_DOMAIN=' . var_export(config('session.domain'), true));
+    $this->line('SESSION_PATH=' . config('session.path'));
+    $this->line('SESSION_SAME_SITE=' . var_export(config('session.same_site'), true));
     $this->line('SESSION_SECURE_COOKIE=' . var_export(config('session.secure'), true));
 
     try {

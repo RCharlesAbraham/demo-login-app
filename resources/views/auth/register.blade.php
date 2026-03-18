@@ -8,21 +8,21 @@
         <!-- Title -->
         <h1 class="login-title" style="color: #333; font-size: 26px; margin-bottom: 40px; font-weight: 700;">Sign Up and Start Learning!</h1>
 
-            <!-- Role Toggle -->
-            <div class="role-toggle-container">
-                <div class="role-toggle">
-                    <input type="radio" id="role-learner" name="role" value="learner" checked>
-                    <label for="role-learner" class="toggle-btn" id="label-learner">Learner</label>
-                    
-                    <input type="radio" id="role-guide" name="role" value="guide">
-                    <label for="role-guide" class="toggle-btn" id="label-guide">Guide</label>
-                    
-                    <div class="toggle-slider"></div>
-                </div>
-            </div>
-
             <form action="{{ route('register.post') }}" method="POST" class="auth-form">
                 @csrf
+
+                <!-- Role Toggle -->
+                <div class="role-toggle-container">
+                    <div class="role-toggle">
+                        <input type="radio" id="role-learner" name="role" value="learner" {{ old('role', 'learner') === 'learner' ? 'checked' : '' }}>
+                        <label for="role-learner" class="toggle-btn" id="label-learner">Learner</label>
+                        
+                        <input type="radio" id="role-guide" name="role" value="guide" {{ old('role') === 'guide' ? 'checked' : '' }}>
+                        <label for="role-guide" class="toggle-btn" id="label-guide">Guide</label>
+                        
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
 
                 @if ($errors->any())
                     <div style="color: red; margin-bottom: 20px; font-size: 14px;">
