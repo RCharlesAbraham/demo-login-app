@@ -4,6 +4,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AuthController;
 
+$authView = function (string $view) {
+    return response()
+        ->view($view)
+        ->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
+        ->header('Pragma', 'no-cache')
+        ->header('Expires', 'Sat, 01 Jan 1990 00:00:00 GMT');
+};
+
 Route::get('/', function () {
     return view('auth.home');
 })->name('home');
@@ -12,16 +20,16 @@ Route::get('/home', function () {
     return redirect('/');
 });
 
-Route::get('/login', function () {
-    return view('auth.login');
+Route::get('/login', function () use ($authView) {
+    return $authView('auth.login');
 })->name('login');
 
-Route::get('/forgot-password', function () {
-    return view('auth.forgot-password');
+Route::get('/forgot-password', function () use ($authView) {
+    return $authView('auth.forgot-password');
 })->name('password.request');
 
-Route::get('/register', function () {
-    return view('auth.register');
+Route::get('/register', function () use ($authView) {
+    return $authView('auth.register');
 })->name('register');
 
 Route::get('/account', function () {
